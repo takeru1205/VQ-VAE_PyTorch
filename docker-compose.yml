@@ -9,8 +9,11 @@ services:
                         - DISPLAY=$DISPLAY
                         - NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
                 volumes:
-                        - ./src:/app/src
+                        - ./app:/app
                         - /tmp/.X11-unix:/tmp/.X11-unix
+                command: jupyter notebook --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token='' --notebook-dir=/app
+                ports:
+                        - 8888:8888
                 deploy:
                         resources:
                                 reservations:
